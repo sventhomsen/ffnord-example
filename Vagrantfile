@@ -28,7 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   (0..4).each do |i|
 		config.vm.define "gc-gw#{i}" do |node|
 			node.vm.hostname = "gc-gw#{i}"
-			node.vm.network "private_network", ip: "172.19.1.#{i+1}", netmask: "255.255.0.0"
+			node.vm.network "private_network", ip: "172.19.1.#{i+2}", netmask: "255.255.0.0"
 			node.vm.provision :shell, path: "bootstrap.sh", args: "gc-gw#{i}"
 		end
   end
@@ -37,9 +37,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Metropolis
   (0..1).each do |i|
 		config.vm.define "mp-gw#{i}" do |node|
-			node.vm.hostname = "gc-gw#{i}"
-			node.vm.network "private_network", ip: "172.19.2.#{i+1}", netmask: "255.255.0.0"
-			node.vm.provision :shell, path: "bootstrap.sh", args: "gc-gw#{i}"
+			node.vm.hostname = "mp-gw#{i}"
+			node.vm.network "private_network", ip: "172.19.2.#{i+2}", netmask: "255.255.0.0"
+			node.vm.provision :shell, path: "bootstrap.sh", args: "mp-gw#{i}"
+		end
+  end
+  
+  # Smallville
+  (0..1).each do |i|
+		config.vm.define "sv-gw#{i}" do |node|
+			node.vm.hostname = "sv-gw#{i}"
+			node.vm.network "private_network", ip: "172.19.3.#{i+2}", netmask: "255.255.0.0"
+			node.vm.provision :shell, path: "bootstrap.sh", args: "sv-gw#{i}"
 		end
   end
 end
