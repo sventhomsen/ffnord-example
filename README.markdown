@@ -134,7 +134,7 @@ machines.
 Now we can rollout some of the machines.
 
 
-    vagrant up services gc-gw0 gc-gw1 mp-gw0 mp-gw1 sv-gw0 sv-gw1
+    vagrant up services gc-gw0 gc-gw1 mp-gw0 mp-gw1
     # Get a cup of coffee, take a walk or do something interesting. This will take time...
     vagrant ssh gc-gw0
 
