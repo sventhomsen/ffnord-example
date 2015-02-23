@@ -5,7 +5,7 @@ class {
 	wan_devices => ['eth0','eth1'],
     
 }
-
+# ffnord::mesh is defined in the ffnord package in init.pp
 ffnord::mesh { 'mesh_ffgc':
   mesh_name        => "Freifunk Gotham City",
   mesh_as          => 65035,
