@@ -19,6 +19,7 @@ ffnord::mesh { 'mesh_ffgc':
 
   fastd_secret     => "/root/fastd_secret.conf",
   fastd_port       => 10035,
+  fastd_low_port       => 11235,
   fastd_peers_git  => '/vagrant/fastd/gc/',
 
   dhcp_ranges => [ '10.35.0.2 10.35.4.254' ],
