@@ -80,3 +80,24 @@ service alfred start
 : '####### Check for services if they are running correctly ######'
 service --status-all 2>&1 | egrep '(bird6|openvpn|fastd|alfred|bat)'
 pgrep -lf '(bird6|openvpn|fastd|alfred|bat)'
+
+cd /opt/
+git clone https://github.com/tcatm/pyddhcpd.git
+cp /vagrant/files/opt/pyddhcpd/config.py /opt/pyddhcpd/config.py 
+
+: "build and install 3.4.3 as root"
+P3PATH=/home/vagrant/Python3
+mkdir -p $P3PATH
+cd $P3PATH
+wget https://www.python.org/ftp/python/3.4.3/Python-3.4.3.tgz
+tar -zxvf Python-3.4.3.tgz
+cd Python-3.4.3
+./configure --prefix=$P3PATH/Python-3.4.3
+make; make install
+
+: "start Python 3.4.3 environment"
+$P3PATH/Python-3.4.3/bin/pyvenv py3env
+source py3env/bin/activate
+: "start pyddhcpd"
+python3 /opt/pyddhcpd/pyddhcpd.py
+
