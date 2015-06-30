@@ -11,7 +11,7 @@ config = {
     "mcgroup": "ff02::1234",
 
     # Interface for communication with other nodes
-    "mcif": "veth1",
+    "mcif": "ffmp-mvpn",
 
     # Subnet used as DHCP Pool
     "prefix": IPv4Network("10.0.0.0/27"),
@@ -38,13 +38,13 @@ config = {
     ### Config for clients
 
     # Interface on which clients will send requests
-    "clientif": "client0",
+    "clientif": "ffmp-mvpn",
 
     # Server address (must be present on clientif)
-    "siaddr": IPv4Address("10.0.0.1"),
+    "siaddr": IPv4Address("172.19.1.1"),
 
     # A list of IPv4 addreses announced as default gateways to clients
-    "routers": [IPv4Address("10.0.0.1")],
+    "routers": [IPv4Address("172.19.1.1")],
 
     # A list of DNS servers announcet to clients
     "dns": [IPv4Address("10.130.0.255"), IPv4Address("10.130.0.254")],

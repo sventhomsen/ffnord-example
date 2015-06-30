@@ -83,7 +83,7 @@ pgrep -lf '(bird6|openvpn|fastd|alfred|bat)'
 
 cd /opt/
 git clone https://github.com/tcatm/pyddhcpd.git
-cp /vagrant/files/opt/pyddhcpd/config.py /opt/pyddhcpd/config.py 
+cp /root/pyddhcpd/config.py /opt/pyddhcpd/config.py 
 
 : "build and install 3.4.3 as root"
 P3PATH=/home/vagrant/Python3
