@@ -66,11 +66,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Use VBoxManage to customize the VM. For example to change memory:
     vb.customize ["modifyvm", :id, "--memory", "64"]
   end
+  config.ssh.username = 'root'
+  config.ssh.password = 'vagrant'
+  config.ssh.insert_key = 'true'
+  config.ssh.shell = 'ash'
   (0..9).each do |i|
         config.vm.define "gc-node0#{i}" do |node|
-            node.vm.hostname = "gc-node0#{i}"
-            node.vm.network "private_network", ip: "10.112.222.#{i+1}", netmask: "255.255.0.0"
-            #node.vm.provision :shell, path: "bootstrap.sh", args: "node0#{i}"
+            #node.vm.hostname = "gc-node0#{i}"
+            #not supported: node.vm.network "private_network", ip: "10.112.222.#{i+1}", netmask: "255.255.0.0"
+            #not supported: node.vm.provision :ash, path: "bootstrap-node.sh", args: "node0#{i}"
         end
   end
 end
