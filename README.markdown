@@ -131,16 +131,26 @@ machines:
 
     for dir in fastd/* icvpn; do ( cd ${dir} ; git init ; git add --all ; git commit -m "Initial commit" ) done
 
-Now we can rollout some of the machines:
+Now we can rollout some of the machines and nodes:
 
-    vagrant up services gc-gw0 gc-gw1 mp-gw0 mp-gw1
+    vagrant up services gc-gw0 gc-gw1 gc-node00 gc-node01 mp-gw0 mp-gw1
     # Get a cup of coffee, take a walk or do something interesting. This will take time...
     vagrant ssh gc-gw0
 
 Look around the mashines. For example check for running services with:
 
-    service --status-all 2>&1 | egrep '(bird6|openvpn|fastd|alfred|bat)'
-    pgrep -lf '(bird6|openvpn|fastd|alfred|bat)'
+    service --status-all 2>&1 | egrep '(bird|bird6|openvpn|fastd|alfred|bat|bind)'
+    pgrep -lf '(bird|bird6|openvpn|fastd|alfred|bat|bind)'
+    if [ $(dig @localhost www.ccc.de|grep ccc.de|wc -l) -gt 2 ]; then echo ccc.de reacheable; else echo ccc.de not reacheable; fi
+
+On the nodes you can see to which gateway you are connected with (arrow `=>`)
+
+    batctl gwl
+
+And analyze the ping of each hub to the gateway (example de:ad:be:ef:ff:04) with
+
+    batctl tr de:ad:be:ef:ff:04
+
     
 In case the ssh login doesn't work: Vagrant creates all VMs with the user "vagrant" and the standard password "vagrant". 
 
