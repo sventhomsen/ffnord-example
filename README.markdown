@@ -139,8 +139,8 @@ Now we can rollout some of the machines and nodes:
 
 Look around the mashines. For example check for running services with:
 
-    service --status-all 2>&1 | egrep '(bird|bird6|openvpn|fastd|alfred|bat|bind)'
-    pgrep -lf '(bird|bird6|openvpn|fastd|alfred|bat|bind)'
+    service --status-all 2>&1 | egrep '(bird|bird6|openvpn|fastd|alfred|bat|bind|dhcp)'
+    pgrep -lf '(bird|bird6|openvpn|fastd|alfred|bat|bind|dhcp)'
     if [ $(dig @localhost www.ccc.de|grep ccc.de|wc -l) -gt 2 ]; then echo ccc.de reacheable; else echo ccc.de not reacheable; fi
 
 On the nodes you can see to which gateway you are connected with (arrow `=>`)
@@ -151,7 +151,9 @@ And analyze the ping of each hub to the gateway (example de:ad:be:ef:ff:04) with
 
     batctl tr de:ad:be:ef:ff:04
 
+You can check more functionality with https://github.com/rubo77/gateway-test.sh/blob/master/gateway-test.sh
     
+
 In case the ssh login doesn't work: Vagrant creates all VMs with the user "vagrant" and the standard password "vagrant". 
 
 Vagrant uses the configuration in `Vagrantfile` to create each machine. In our `Vagrantfile` there is defined that on each machine the shell script `bootstrap.sh` is executed on install, so if you like to change the way machines are deployed, you can manipulate the `bootstrap.sh`.
