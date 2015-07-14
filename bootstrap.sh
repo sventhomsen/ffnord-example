@@ -78,5 +78,7 @@ service alfred start
 /etc/init.d/fastd restart
 
 : '####### Check for services if they are running correctly ######'
-service --status-all 2>&1 | egrep '(bird6|openvpn|fastd|alfred|bat)'
-pgrep -lf '(bird6|openvpn|fastd|alfred|bat)'
+service --status-all 2>&1 | egrep '(bird|bird6|openvpn|fastd|alfred|bat|bind|dhcp)'
+pgrep -lf '(bird|bird6|openvpn|fastd|alfred|bat|bind|dhcp)'
+
+: 'you can check more functionality with https://github.com/rubo77/gateway-test.sh/blob/master/gateway-test.sh'
