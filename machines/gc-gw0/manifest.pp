@@ -12,15 +12,18 @@ ffnord::mesh { 'mesh_ffgc':
   mesh_code        => "ffgc",
   mesh_mac         => "de:ad:be:ef:ff:00",
   vpn_mac          => "de:ad:be:ef:fe:00",
+  gw_mac           => "de:ad:ce:ef:fe:00",
   mesh_ipv6        => "fd35:f308:a922::ff00/64",
   mesh_ipv4        => "10.35.0.1/19",
   range_ipv4       => "10.35.0.0/16",
   mesh_peerings    => "/root/mesh_peerings.yaml",
-
+  fastd_peers_git  => '/vagrant/fastd/gc/',
+  fastd_gw_git     => '/vagrant/fastd/gc/',
   fastd_secret     => "/root/fastd_secret.conf",
   fastd_port       => 11235,
-  fastd_peers_git  => '/vagrant/fastd/gc/',
-
+  fastd_gw_port    => 11236,
+  mesh_interface   => "",
+  gw_interface     => "",
   dhcp_ranges => [ '10.35.0.2 10.35.4.254' ],
   dns_servers => [ '10.35.5.1', '10.35.10.1', '10.35.15.1', '10.35.20.1' ],
 }
