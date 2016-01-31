@@ -10,15 +10,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   #config.vm.box = "boxcutter/debian78-i386" # wheezy 32bit
   #config.vm.box = "boxcutter/debian78" # wheezy 64bit
-  config.vm.box = "boxcutter/debian81" # jessie 64bit
+  config.vm.box = "boxcutter/debian82" # jessie 64bit
 
-  config.vm.provider "virtualbox" do |vb|
+  #config.vm.provider "libvirt" do |vb|
     # Don't boot with headless mode
     # vb.gui = true
 
     # Use VBoxManage to customize the VM. For example to change memory:
-    vb.customize ["modifyvm", :id, "--memory", "512"]
-  end
+  #  vb.customize ["modifyvm", :id, "--memory", "512"]
+  #end
 
   # Service machine
   config.vm.define "services" do |node|

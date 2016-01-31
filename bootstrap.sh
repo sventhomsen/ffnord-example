@@ -8,9 +8,9 @@ set -x
 MACHINE=$1
 
 # optional: if you have brances in your own repo that should be merged add the repo here (example: 'https://github.com/...')
-FFNORD_TESTING_REPO='https://github.com/rubo77/ffnord-puppet-gateway'
+FFNORD_TESTING_REPO='https://github.com/sventhomsen/ffnord-puppet-gateway'
 # and add the branches here (komma separated):
-FFNORD_TESTING_BRANCHES=('jessie')
+FFNORD_TESTING_BRANCHES=('prod')
 
 SCRIPTPATH="/vagrant"
 MACHINE_PATH="$SCRIPTPATH/machines/${MACHINE}/"
@@ -54,6 +54,8 @@ if [ $LSBDISTCODENAME != "wheezy" ]; then
   apt-get install -y systemd-sysv
   # TODO: solve this in puppet
   modprobe ip_tables
+  modprobe nf_conntrack
+  modprobe nf_nat
 fi
 puppet module install puppetlabs-stdlib
 puppet module install puppetlabs-apt --version 1.5.1

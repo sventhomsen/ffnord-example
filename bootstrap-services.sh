@@ -11,16 +11,18 @@ SCRIPTPATH="/vagrant"
 MACHINE_PATH="$SCRIPTPATH/machines/${MACHINE}/"
 mkdir -p "$MACHINE_PATH"
 
+LSBDISTCODENAME='jessie'
+
 cat > /etc/apt/sources.list << EOF
-deb http://ftp.de.debian.org/debian wheezy main
-deb-src http://ftp.de.debian.org/debian wheezy main
+deb http://ftp.de.debian.org/debian $LSBDISTCODENAME main
+deb-src http://ftp.de.debian.org/debian $LSBDISTCODENAME main
 
-deb http://security.debian.org/ wheezy/updates main contrib
-deb-src http://security.debian.org/ wheezy/updates main contrib
+deb http://security.debian.org/ $LSBDISTCODENAME/updates main contrib
+deb-src http://security.debian.org/ $LSBDISTCODENAME/updates main contrib
 
-# wheezy-updates, previously known as 'volatile'
-deb http://ftp.de.debian.org/debian wheezy-updates main contrib
-deb-src http://ftp.de.debian.org/debian wheezy-updates main contrib
+# $LSBDISTCODENAME-updates, previously known as 'volatile'
+deb http://ftp.de.debian.org/debian $LSBDISTCODENAME-updates main contrib
+deb-src http://ftp.de.debian.org/debian $LSBDISTCODENAME-updates main contrib
 EOF
 
 #Reconfigure apt so that it does not install additional packages
@@ -47,7 +49,7 @@ update-rc.d -f openvpn defaults
 
 # iptables
 iptables -A POSTROUTING -t nat -o eth0 -j MASQUERADE
-service iptables-persistent save
+service netfilter-persistent save
 
 # sysctl settings
 cp routing.conf /etc/sysctl.d/
